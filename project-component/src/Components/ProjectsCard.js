@@ -54,7 +54,7 @@ const ProjectsCard = () => {
                       <img className="align-self-start" alt="Full Wedding Package" style={{ objectFit: "cover" }} />
                       <div className="edit">Edit</div>
                     </button>
-                    <div className="w-100" style={{ width: "100% !important" }}>
+                    <div className="w-100" style={{ width: "100% !important", transition: "height 0.3s ease-in-out"}}>
                       <label className="flex-c mb-0 Products__Label-ke3axf-0 ViAdX">
                         <input
                           maxLength="150"
@@ -67,7 +67,7 @@ const ProjectsCard = () => {
                           style={{ fontWeight: "bold", border: "none" }}
                         />
                       </label>
-                      <label className="flex-c Products__Label-ke3axf-0 ViAdX">
+                      <label className="flex-c Products__Label-ke3axf-0 ViAdX" style={{transition: "height 0.3s ease-in-out"}}>
                         <textarea
                           maxLength="1500"
                           rows="1"
@@ -116,47 +116,3 @@ const ProjectsCard = () => {
 export default ProjectsCard;
 
 
-
-
-        // <section style={{border:"solid black"}}>
-        //     <div className="flex-C" style={{alignItems:"stretch"}}>
-        //         <div className="div-One">
-        //             <div className="flex-C" style={{flex:"1 1 0%"}}>
-        //                 <div className="div-Two" style={{display: "block", width: "100%"}}>
-        //                     <form>
-        //                         <div className="div-Three" style={{display:"flex", gap:"15px"}}>
-        //                             <button type="button" style={{width: "115px", flexShrink: "0", height:"115px", position:"relative", background:"rgb(255, 255, 255)"}}>
-
-        //                             </button>
-
-        //                             <div className="w-100" style={{width: "100% !important"}}>
-        //                                 <label style={{width: "100%", padding: "0px", marginBottom: "0 !important"}}>
-        //                                     <input/>
-
-        //                                     <input maxlength="150" type="text" class="form-control Products__Input-ke3axf-3 JyYIe" placeholder="Title – May include emoticons 👋 ✨" required="" value="Full Wedding Package" style="font-weight: bold;"></input>
-        //                                 </label>
-
-        //                                 <label>
-        //                                     <textarea>
-
-        //                                     </textarea>
-        //                                 </label>
-
-        //                                 <div>
-        //                                     <label>
-        //                                         <span>
-
-        //                                         </span>
-
-        //                                         <input/>
-        //                                     </label>
-        //                                 </div>
-        //                             </div>
-        //                         </div>
-        //                     </form>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-
-        // </section>
