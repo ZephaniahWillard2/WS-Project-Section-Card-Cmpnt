@@ -1,9 +1,9 @@
+/* Copied styles */
 .flex-c{
   display: flex;
     -webkit-box-align: center;
     align-items: center;
 }
-
 .div-One{
   flex: 1 1 0%;
     display: flex;
@@ -13,17 +13,9 @@
 }
 
 
-
-
-
-
-
-
-
 .align-self-start {
   object-fit: cover;
 }
-
 .fvBNzY img {
   background: rgb(255, 255, 255);
   width: 100%;
@@ -53,13 +45,6 @@ img {
 }
 
 
-
-
-
-
-
-
-
 .fvBNzY .edit {
   display: none;
   position: absolute;
@@ -80,12 +65,6 @@ img {
   position: relative;
   background: rgb(255, 255, 255);
 }
-
-
-
-
-
-
 
 
 .ViAdX {
@@ -117,16 +96,6 @@ label {
 
 
 
-
-
-
-
-
-
-
-
-
-
 .JyYIe {
     color: rgb(34, 34, 34);
     height: auto;
@@ -141,6 +110,7 @@ label {
     border-bottom: 1px solid transparent;
 }
 
+/* NOTE: TOOK OUT the transition affect in the form control bc it was making the resizing the textarea abrupt. */
 .form-control {
     display: block;
     width: 500px;
@@ -156,7 +126,6 @@ label {
     border-radius: 0.25rem;
     /* transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; */
     transition: height 0.3s ease-in-out;
-
 }
 
 input, textarea {
@@ -191,30 +160,19 @@ button, input, optgroup, select, textarea {
 }
 
 
-
-
-
-/* Textarea Resizing Styles */
-
-
+    /* ADDED STYLES: Textarea Resizing Styles */
 .Products__InputTextArea-ke3axf-4 {
   transition: height 0.3s ease-in-out;
 }
 
 .textarea-focused {
-  height: 100px; 
+  height: 70px;
 }
 
 
 
-
-
-
-
-
-
-
-
+    /* NOTE: TOOK OUT the heights and changed the resizing affects to none since they were preventing textarea resizing. */
+    /* NOTE: TOOK OUT the transition affect bc it was making the resizing the textarea abrupt.*/
 .gAZTZj {
   color: rgb(34, 34, 34);
   /* height: auto; */
@@ -227,7 +185,7 @@ button, input, optgroup, select, textarea {
   border-radius: 3px 3px 0px 0px;
   line-height: 1;
   border-bottom: 1px solid transparent;
-  /* resize: none; */
+  resize: none;
 }
 .form-control {
   display: block;
@@ -244,13 +202,14 @@ button, input, optgroup, select, textarea {
   border-radius: 0.25rem;
   /* transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; */
 }
-
 input, textarea {
   border: none;
   outline: none;
   margin: 0px;
   padding: 0px;
 }
+    /* NOTE: Took the below out to reduce complexity, I don't think it had any functional impact on resizing the textarea. */
+
 /* a, area, button, input, label, select, summary, textarea, [tabindex] {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
@@ -265,12 +224,9 @@ button, input, select, textarea {
   font-size: inherit;
   line-height: inherit;
 }
-
 button, input, optgroup, select, textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
 }
-
-
