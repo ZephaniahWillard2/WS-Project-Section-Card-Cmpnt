@@ -116,6 +116,8 @@ label {
     width: 500px;
     height: calc(.7em + 0.7rem + 2px);
     padding: 0.375rem 0.75rem;
+    padding-right: 0px;
+
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -126,6 +128,7 @@ label {
     border-radius: 0.25rem;
     /* transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; */
     transition: height 0.3s ease-in-out;
+  justify-content: center;
 }
 
 input, textarea {
@@ -166,8 +169,47 @@ button, input, optgroup, select, textarea {
 }
 
 .textarea-focused {
-  height: 70px;
+  height: 13vh;
 }
+
+
+    /* ADDED STYLES: Scroll bar */
+        /* !!NOTE: Scroll bar is momentarily coming into view even when the text hasnt expanded enough necessary to scroll. */
+.textarea-focused::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
+
+.textarea-focused::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+  cursor: default;
+  height: 8vh;
+}
+
+/* ADDED STYLES: Ellipse */
+.textarea-wrapper {
+  position: relative;
+}
+
+.textarea-wrapper.multiline::after {
+  content:'...';
+  position: absolute;
+  right: 24px;
+  top: 6px;
+  background: white;
+  display: inline-flex;
+  font-weight: lighter;
+  /* -webkit-box-align: center;
+  text-align: center;
+  justify-content: center; */
+}
+
+
+
+
+
 
 
 
@@ -192,6 +234,8 @@ button, input, optgroup, select, textarea {
   width: 500px;
   /* height: calc(1.5em + 0.75rem + 2px); */
   padding: 0.375rem 0.75rem;
+  padding-right: 0px;
+
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -200,6 +244,7 @@ button, input, optgroup, select, textarea {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
+  justify-content: center;
   /* transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; */
 }
 input, textarea {
