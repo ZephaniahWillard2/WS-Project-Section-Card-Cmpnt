@@ -8,7 +8,7 @@ const ProjectsCard = () => {
     "Includes a complete and mastered wedding album with up to 10 songs and recordings."
   );
   const [price, setPrice] = useState("5000");                                  //Not important
-  const [isMultiline, setIsMultiline] = useState(false);
+  const [isMultiline, setIsMultiline] = useState(false);                       //State variable and function to update the variable's state from not multiline to multiline, indicating whether or not ellipses needed.
 
   const textareaRef = useRef(null);
 
@@ -17,25 +17,25 @@ const ProjectsCard = () => {
     setIsTextareaFocused(true);
   };
 
-  const handleBlur = () => {                                                 //using the setIsTextareaFocused function, from "false" to "true".
+  const handleBlur = () => {                                                 //Made a function to change the state of the state variable, using the setIsTextareaFocused function,
     console.log("Blurred");                                                  //back to "false" when the textarea is no longer onFocus.
     setIsTextareaFocused(false);
   };
 
-  const handleTextareaChange = (e) => {
+  const handleTextareaChange = (e) => {                                     //Made a function to change the state of the description through calling the checkIfMultiline function.
     setDescription(e.target.value);
     checkIfMultiline();
   };
 
-  const checkIfMultiline = () => {
-    const textarea = textareaRef.current;
+  const checkIfMultiline = () => {                                          //A function that determines if textarea has multiple lines that will eventually update the state of 
+    const textarea = textareaRef.current;                                   //the handleTextareaChange function.
     if (textarea) {
       const hasMultipleLines = textarea.scrollHeight > textarea.clientHeight;
       setIsMultiline(hasMultipleLines);
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {                                                         //useEffect for function performing side effect.
     checkIfMultiline();
   }, [description]);
 
@@ -69,7 +69,7 @@ const ProjectsCard = () => {
             <div className="flex-c" style={{ flex: "1 1 0%" }}>
               <div style={{ display: "block", width: "100%" }}>
                 <form>
-                  <div style={{ display: "flex", gap: "15px" }}>
+                  <div style={{ display: "flex", gap: "15px", width:"80%" }}>
                     <button type="button" className="Products__ImgContainer-ke3axf-6 fvBNzY">
                       <img className="align-self-start" alt="Full Wedding Package" style={{ objectFit: "cover" }} />
                       <div className="edit">Edit</div>
