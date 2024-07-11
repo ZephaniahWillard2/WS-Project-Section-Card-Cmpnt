@@ -194,7 +194,7 @@ button, input, optgroup, select, textarea {
 }
 
 .textarea-wrapper.multiline::after {
-  content:'...';
+  content:'...more';
   position: absolute;
   right: 24px;
   top: 6px;
@@ -255,15 +255,16 @@ input, textarea {
 }
     /* NOTE: Took the below out to reduce complexity, I don't think it had any functional impact on resizing the textarea. */
 
-/* a, area, button, input, label, select, summary, textarea, [tabindex] {
+a, area, button, input, label, select, summary, textarea, [tabindex] {
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-} */
+}
 textarea {
   margin: 0;
   overflow: auto;
   resize: none;
 }
+/* Button */
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;

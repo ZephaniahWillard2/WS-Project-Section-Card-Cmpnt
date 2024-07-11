@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../App.css";
 
+
 const ProjectsCard = () => {
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);           //Created a state variable and a function to update the variable's state from "Not Focused" to "Focused".
   const [title, setTitle] = useState("Full Wedding Package");                  //Not important
@@ -9,6 +10,16 @@ const ProjectsCard = () => {
   );
   const [price, setPrice] = useState("5000");                                  //Not important
   const [isMultiline, setIsMultiline] = useState(false);                       //State variable and function to update the variable's state from not multiline to multiline, indicating whether or not ellipses needed.
+
+  
+  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
+  const [clickedShowAdvanced, setClickedShowAdvanced] = useState(false);
+
+  const [quantityAvailableFocus, setQuantityAvailableFocus] = useState(false);
+  const [quantityAvailableValue, setQuantityAvailableValue] = useState("",
+  );
+
+
 
   const textareaRef = useRef(null);
 
@@ -38,6 +49,28 @@ const ProjectsCard = () => {
   useEffect(() => {                                                         //useEffect for function performing side effect.
     checkIfMultiline();
   }, [description]);
+
+  const editing =
+    // inputChanged ||
+    // titleFocus ||
+    // descriptionFocus ||
+    // imageUrlFocus ||
+    // priceFocus ||
+    // additionalConfirmationFocus ||
+    // requiresShippingFocus ||
+    quantityAvailableFocus ||
+    isTextareaFocused ||
+    // storePickupEnabledFocus ||
+    // storePickupAppointmentTypeFocus ||
+    // sendDownloadEmailFocus ||
+    // hidePublicFocus ||
+    // edit ||
+    showAdvancedSettings ||
+    // clickedCopy ||
+    clickedShowAdvanced
+    // clickedRemove ||
+    // clickedSave
+    ;
 
   return (
     <div className="card" style={{ display: "flex", paddingLeft: "30%", paddingTop: "10%" }}>
@@ -88,7 +121,6 @@ const ProjectsCard = () => {
                         />
                       </label>
                       <label className="flex-c Products__Label-ke3axf-0 ViAdX" style={{transition: "height 0.3s ease-in-out"}}>
-                        <div className={`textarea-wrapper ${!isTextareaFocused && isMultiline ? "multiline" : ""}`}>
                           <textarea
                             maxLength="1500"
                             rows="1"
@@ -102,7 +134,7 @@ const ProjectsCard = () => {
                             onChange={handleTextareaChange}
                             ref={textareaRef}
                           />
-                        </div>
+                          <div className={`textarea-wrapper ${!isTextareaFocused && isMultiline ? "multiline" : ""}`}></div>
                       </label>
                       <div className="d-flex justify-content-between">
                         <label className="flex-c w-50 Products__Label-ke3axf-0 ViAdX">
@@ -117,9 +149,63 @@ const ProjectsCard = () => {
                             style={{ border: "none" }}
                           />
                         </label>
-                        <button type="button" className="btn btn-sm btn-link px-0" style={{ whiteSpace: "nowrap", display: "none" }}>
+                        
+                          <button
+                          type="button"
+                          className="btn btn-sm btn-link px-0"
+                          style={{
+                            whiteSpace: 'nowrap',
+                            display:
+                              !editing || showAdvancedSettings ? 'none' : 'inline',
+                          }}
+                          onPointerDown={() => setClickedShowAdvanced(true)}
+                          onPointerUp={() => setClickedShowAdvanced(false)}
+                          onClick={() => setShowAdvancedSettings(true)}
+                          >
                           ...more settings
-                        </button>
+                          </button>
+
+                          {showAdvancedSettings && (
+                            <div>
+                              <hr />
+                              <div className="form-group">
+                                {quantityAvailableValue && (
+                                  <label htmlFor="quantityAvailable">
+                                    Quantity Available
+                                  </label>
+                                )}
+                                            {/* MY NOTES_____Why is this label here? Is it just acting as a container? */}
+                                <label className={'flex-c'}>
+                                  <input
+                                    id="quantityAvailable"
+                                    onFocus={() => setQuantityAvailableFocus(true)}
+                                    onBlur={() => setQuantityAvailableFocus(false)}
+                                    onChange={e => {
+                                      const val = e.target.value;
+
+                                      // If original quantity was 0 and new quantity is more than that
+                                      // show checkbox option for notifying the waitlist
+                                      // if (
+                                      //   quantityAvailableValue <= 0 &&
+                                      //   parseInt(val, 10) > 0
+                                      // ) {
+                                      //   setShowWaitlistNotification(true);
+                                      // } else {
+                                      //   setShowWaitlistNotification(false);
+                                      // }
+
+                                      setQuantityAvailableValue(val);
+                                    }
+                                  }
+                                    value={quantityAvailableValue}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Quantity Available"
+                                    quantityAvailable
+                                  />
+                                </label>
+                                </div>
+                            </div>)}
                       </div>
                     </div>
                   </div>
