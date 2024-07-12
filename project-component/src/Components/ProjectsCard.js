@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import SquareRadioButton from "./SquareRadioButton";
 import "../App.css";
 
 
@@ -12,12 +13,19 @@ const ProjectsCard = () => {
   const [isMultiline, setIsMultiline] = useState(false);                       //State variable and function to update the variable's state from not multiline to multiline, indicating whether or not ellipses needed.
 
   
-  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);
+  const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);    //Copied from source code
   const [clickedShowAdvanced, setClickedShowAdvanced] = useState(false);
 
   const [quantityAvailableFocus, setQuantityAvailableFocus] = useState(false);
-  const [quantityAvailableValue, setQuantityAvailableValue] = useState("",
-  );
+  const [quantityAvailableValue, setQuantityAvailableValue] = useState("");
+
+ 
+    const [selectedValue, setSelectedValue] = useState(null);
+  
+    const handleRadioChange = (value) => {
+      setSelectedValue((prevValue) => (prevValue === value ? null : value));
+    };
+  
 
 
 
@@ -168,12 +176,12 @@ const ProjectsCard = () => {
                           {showAdvancedSettings && (
                             <div>
                               <hr />
-                              <div className="form-group">
-                                {quantityAvailableValue && (
+                              <div className="form-group" style={{paddingTop:"50px"}}>
+                                {quantityAvailableValue }
                                   <label htmlFor="quantityAvailable">
                                     Quantity Available
                                   </label>
-                                )}
+                               
                                             {/* MY NOTES_____Why is this label here? Is it just acting as a container? */}
                                 <label className={'flex-c'}>
                                   <input
@@ -204,7 +212,100 @@ const ProjectsCard = () => {
                                     quantityAvailable
                                   />
                                 </label>
-                                </div>
+                              </div>
+
+                                  {/* Confirmation Screen */}
+                              <div className="form-group">
+                                <label htmlFor="confirmationScreen">
+                                    Confirmation Screen
+                                </label>
+                                <label className={'flex-c'}>
+                                  <input
+                                    id="confirmationScreen"
+                                    // Change these from quantty to confirm. stuff
+                                    onFocus={() => setQuantityAvailableFocus(true)}
+                                    onBlur={() => setQuantityAvailableFocus(false)}
+                                    onChange={e => {
+                                      const val = e.target.value;
+
+                                      setQuantityAvailableValue(val);
+                                    }
+                                  }
+                                    value={quantityAvailableValue}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Confirmation Screen"
+                                    quantityAvailable
+                                  />
+                                </label>
+                              </div>
+
+                                  {/* Hide From Public */}
+                              <div className="form-group">
+                                <h2 htmlFor="hidePublic">
+                                    Hide on Sparkle Site
+                                </h2>
+                                <label className={'flex-c'}>
+                                  <div className="radioBtn1">
+                                    <SquareRadioButton
+                                      value="option1"
+                                      selected={selectedValue === 'option1'}
+                                      onChange={handleRadioChange}
+                                    />
+                                  </div>
+                                </label>
+                              </div>
+
+                                   {/* Send Digitally*/}
+                              <div className="form-group">
+                                <h2 htmlFor="sendDigital">
+                                    Send Digitally
+                                </h2>
+                                <label className={'flex-c'}>
+                                  <div className="radioBtn2">
+                                  <SquareRadioButton
+                                  
+                                    value="option2"
+                                    selected={selectedValue === 'option2'}
+                                    onChange={handleRadioChange}
+                                  />
+                                  </div>
+                                </label>
+                              </div>
+
+                               {/* Shipping address*/}
+                               <div className="form-group">
+                                <h2 htmlFor="sendDigital">
+                                    Requires Shipping Address
+                                </h2>
+                                <label className={'flex-c'}>
+                                  <div className="radioBtn3">
+                                  <SquareRadioButton
+                                  
+                                    value="option3"
+                                    selected={selectedValue === 'option3'}
+                                    onChange={handleRadioChange}
+                                  />
+                                  </div>
+                                </label>
+                              </div>
+
+                               {/*Store Pickup*/}
+                               <div className="form-group">
+                                <h2 htmlFor="sendDigital">
+                                    Store Pick-Up
+                                </h2>
+                                <label className={'flex-c'}>
+                                  <div className="radioBtn4">
+                                  <SquareRadioButton
+                                  
+                                    value="option4"
+                                    selected={selectedValue === 'option4'}
+                                    onChange={handleRadioChange}
+                                  />
+                                  </div>
+                                </label>
+                              </div>
                             </div>)}
                       </div>
                     </div>
@@ -212,7 +313,6 @@ const ProjectsCard = () => {
                 </form>
               </div>
             </div>
-            <div className="flex-c"></div>
           </div>
         </div>
       </section>
