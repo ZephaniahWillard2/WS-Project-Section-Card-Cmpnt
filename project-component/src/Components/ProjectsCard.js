@@ -15,6 +15,14 @@ const ProjectsCard = () => {
   
   const [showAdvancedSettings, setShowAdvancedSettings] = useState(false);    //Copied from source code
   const [clickedShowAdvanced, setClickedShowAdvanced] = useState(false);
+  const advancedSettingsRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (advancedSettingsRef.current && !advancedSettingsRef.current.contains(event.target)) {
+      setShowAdvancedSettings(false);
+    }
+  };
+  
 
   const [quantityAvailableFocus, setQuantityAvailableFocus] = useState(false);
   const [quantityAvailableValue, setQuantityAvailableValue] = useState("");
@@ -22,7 +30,7 @@ const ProjectsCard = () => {
  
     const [selectedValue, setSelectedValue] = useState(null);
   
-    const handleRadioChange = (value) => {
+    const handleRadioChange = (value) => {                                    //Radio button function
       setSelectedValue((prevValue) => (prevValue === value ? null : value));
     };
   
@@ -53,6 +61,20 @@ const ProjectsCard = () => {
       setIsMultiline(hasMultipleLines);
     }
   };
+
+  useEffect(() => {
+    if (showAdvancedSettings) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showAdvancedSettings]);
+
+
 
   useEffect(() => {                                                         //useEffect for function performing side effect.
     checkIfMultiline();
@@ -174,7 +196,8 @@ const ProjectsCard = () => {
                           </button>
 
                           {showAdvancedSettings && (
-                            <div>
+                            <div  ref={advancedSettingsRef}
+                            className="advancedSetting">
                               <hr />
                               <div className="form-group" style={{paddingTop:"50px"}}>
                                 {quantityAvailableValue }
@@ -306,6 +329,13 @@ const ProjectsCard = () => {
                                   </div>
                                 </label>
                               </div>
+                              <button
+                                type="button"
+                                className="btn btn-sm btn-link px-0"
+                                onClick={() => setShowAdvancedSettings(false)}
+                              >
+                                Cancel
+                              </button>
                             </div>)}
                       </div>
                     </div>
